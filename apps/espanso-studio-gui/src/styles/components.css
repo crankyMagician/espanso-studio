@@ -17,12 +17,20 @@
 
 .status-chip.ok {
     border-color: rgba(16, 185, 129, 0.3);
-    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    background: linear-gradient(
+        135deg,
+        var(--chip-ok-bg),
+        var(--chip-ok-bg-end)
+    );
 }
 
 .status-chip.bad {
     border-color: rgba(239, 68, 68, 0.3);
-    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    background: linear-gradient(
+        135deg,
+        var(--chip-bad-bg),
+        var(--chip-bad-bg-end)
+    );
 }
 
 .status-chip .chip-label {
@@ -107,7 +115,7 @@
 
 .action-btn.danger:hover {
     border-color: var(--error);
-    background: #fef2f2;
+    background: var(--danger-hover-bg);
 }
 
 .action-btn.sm {
@@ -135,7 +143,7 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--modal-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,14 +203,14 @@
 }
 
 .toast.success {
-    background: #ecfdf5;
-    color: #065f46;
+    background: var(--toast-success-bg);
+    color: var(--toast-success-text);
     border: 1px solid var(--success);
 }
 
 .toast.error {
-    background: #fef2f2;
-    color: #991b1b;
+    background: var(--toast-error-bg);
+    color: var(--toast-error-text);
     border: 1px solid var(--error);
 }
 
@@ -291,7 +299,7 @@
 }
 
 .data-table tr:hover td {
-    background: rgba(0, 0, 0, 0.01);
+    background: var(--table-row-hover);
 }
 
 .data-table .actions-cell {
@@ -372,15 +380,15 @@
 
 .badge.green {
     background: var(--espanso-green-light);
-    color: #065f46;
+    color: var(--badge-green-text);
 }
 
 .badge.gray {
-    background: #f1f5f9;
+    background: var(--badge-gray-bg);
     color: var(--text-muted);
 }
 
 .badge.red {
-    background: #fef2f2;
-    color: #991b1b;
+    background: var(--badge-red-bg);
+    color: var(--badge-red-text);
 }

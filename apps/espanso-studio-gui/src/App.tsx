@@ -1,6 +1,7 @@
 import { invoke } from "@tauri-apps/api/core";
 import { useCallback, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
+import { useTheme } from "./hooks/useTheme";
 import DashboardPage from "./pages/DashboardPage";
 import LogsPage from "./pages/LogsPage";
 import MatchesPage from "./pages/MatchesPage";
@@ -12,6 +13,7 @@ import type { Page, StatusResponse } from "./types";
 function App() {
     const [page, setPage] = useState<Page>("dashboard");
     const [status, setStatus] = useState<StatusResponse | null>(null);
+    const { theme, setTheme } = useTheme();
 
     const loadStatus = useCallback(async () => {
         try {
@@ -32,7 +34,13 @@ function App() {
 
     return (
         <>
-            <Sidebar activePage={page} onNavigate={setPage} status={status} />
+            <Sidebar
+                activePage={page}
+                onNavigate={setPage}
+                status={status}
+                theme={theme}
+                onThemeChange={setTheme}
+            />
             <main className="page-content">
                 {page === "dashboard" && (
                     <DashboardPage

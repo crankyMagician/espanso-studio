@@ -98,9 +98,35 @@
     opacity: 1;
 }
 
-.sidebar-status {
-    padding: var(--space-4);
+.sidebar-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .sidebar-footer {
+    border-top-color: rgba(255, 255, 255, 0.03);
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    background: transparent;
+    color: var(--sidebar-text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--sidebar-text);
+}
+
+.sidebar-status {
+    padding: var(--space-2) var(--space-4) var(--space-4);
     display: flex;
     align-items: center;
     gap: var(--space-2);

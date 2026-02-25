@@ -46,6 +46,55 @@
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
     --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.06);
+
+    /* Component-specific colors (light defaults) */
+    --chip-ok-bg: #ecfdf5;
+    --chip-ok-bg-end: #d1fae5;
+    --chip-bad-bg: #fef2f2;
+    --chip-bad-bg-end: #fee2e2;
+    --toast-success-bg: #ecfdf5;
+    --toast-success-text: #065f46;
+    --toast-error-bg: #fef2f2;
+    --toast-error-text: #991b1b;
+    --danger-hover-bg: #fef2f2;
+    --badge-green-text: #065f46;
+    --badge-gray-bg: #f1f5f9;
+    --badge-red-bg: #fef2f2;
+    --badge-red-text: #991b1b;
+    --modal-overlay: rgba(0, 0, 0, 0.4);
+    --table-row-hover: rgba(0, 0, 0, 0.01);
+    --file-item-hover: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] {
+    --content-bg: #121218;
+    --surface: #1c1c26;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: #2a2a3a;
+    --espanso-green-light: rgba(46, 204, 113, 0.15);
+    --sidebar-bg: #141420;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    --chip-ok-bg: rgba(16, 185, 129, 0.12);
+    --chip-ok-bg-end: rgba(16, 185, 129, 0.08);
+    --chip-bad-bg: rgba(239, 68, 68, 0.12);
+    --chip-bad-bg-end: rgba(239, 68, 68, 0.08);
+    --toast-success-bg: rgba(16, 185, 129, 0.15);
+    --toast-success-text: #6ee7b7;
+    --toast-error-bg: rgba(239, 68, 68, 0.15);
+    --toast-error-text: #fca5a5;
+    --danger-hover-bg: rgba(239, 68, 68, 0.12);
+    --badge-green-text: #6ee7b7;
+    --badge-gray-bg: rgba(148, 163, 184, 0.12);
+    --badge-red-bg: rgba(239, 68, 68, 0.12);
+    --badge-red-text: #fca5a5;
+    --modal-overlay: rgba(0, 0, 0, 0.6);
+    --table-row-hover: rgba(255, 255, 255, 0.02);
+    --file-item-hover: rgba(255, 255, 255, 0.03);
 }
 
 * {

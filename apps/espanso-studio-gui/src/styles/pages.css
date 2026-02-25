@@ -102,7 +102,7 @@
 }
 
 .file-item:hover {
-    background: rgba(0, 0, 0, 0.03);
+    background: var(--file-item-hover);
 }
 
 .file-item.active {
@@ -146,6 +146,8 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-size: 13px;
+    background: var(--surface);
+    color: var(--text);
 }
 
 .match-search input:focus {
@@ -350,6 +352,8 @@
     border-radius: var(--radius-sm);
     font-size: 12px;
     width: 160px;
+    background: var(--surface);
+    color: var(--text);
 }
 
 .log-search:focus {
@@ -455,6 +459,7 @@
     line-height: 1.6;
     resize: vertical;
     background: var(--surface);
+    color: var(--text);
 }
 
 .config-textarea:focus {
