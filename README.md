@@ -1,5 +1,20 @@
 # ![Espanso Logo](images/espanso-dark.png#gh-dark-mode-only) ![Espanso Logo](images/espanso-light.png#gh-light-mode-only)
 
+## Espanso Studio Fork Notes
+
+This repository (`crankyMagician/espanso-studio`) is a fork of `espanso/espanso` with a GUI product under [`apps/espanso-studio-gui`](apps/espanso-studio-gui/README.md).
+
+Milestone 1 GUI features:
+
+* Match CRUD (`match/base.yml`)
+* Service controls (start/stop/restart/status)
+* Log tailing (`espanso.log`)
+
+Additional docs:
+
+* [`docs/gui/quickstart.md`](docs/gui/quickstart.md)
+* [`docs/gui/architecture.md`](docs/gui/architecture.md)
+
 > *A cross-platform Text Expander written in Rust*
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/espanso/espanso)

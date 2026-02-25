@@ -13,6 +13,7 @@ to the user documentation it's [on the webpage](https://espanso.org/).
 "Without this file, there is no book."
 - `./docs/assets` stores all the non-markdown content (screenshots, gifs) to be
   used.
+- `./gui` contains fork-specific GUI docs for the `espanso-studio-gui` app.
 
 ## Building instructions (Install mdBook)
 

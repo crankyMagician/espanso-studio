@@ -67,3 +67,9 @@ tarpaulin-report.html
 
 # direnv
 .direnv/
+
+# Espanso Studio GUI (Tauri + React)
+apps/espanso-studio-gui/node_modules/
+apps/espanso-studio-gui/dist/
+apps/espanso-studio-gui/src-tauri/target/
+apps/espanso-studio-gui/*.tsbuildinfo
