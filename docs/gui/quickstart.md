@@ -31,6 +31,18 @@ scripts/create_bundle.sh
 
 This produces the integrated `target/mac/Espanso.app` bundle. To install: copy that app to `/Applications/`.
 
+## macOS Local Testing Notes
+
+- `scripts/create_bundle.sh` assembles a local test bundle from the compiled binaries on disk. It does not preserve the upstream Developer ID signature.
+- After replacing `/Applications/Espanso.app` with a locally assembled bundle, re-check `System Settings > Privacy & Security > Accessibility` and re-enable `Espanso` if shortcuts stop firing.
+- If the Accessibility/setup flow behaves unexpectedly, verify the installed app identity with:
+
+```bash
+codesign -dv --verbose=4 /Applications/Espanso.app
+```
+
+The installed app should report `Identifier=com.federicoterzi.espanso`. If it reports a generated linker-signed identifier instead, macOS can treat it as a different app and deny the previously granted Accessibility permission.
+
 ## Optional Environment Overrides
 
 Use these when testing with non-default paths:

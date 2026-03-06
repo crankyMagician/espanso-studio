@@ -60,6 +60,9 @@ Artifacts:
 - Keep `apps/espanso-studio-gui/src-tauri/icons/icon.png` present; build can fail without it.
 - On macOS, the Tauri GUI is bundled as a helper app under `Espanso.app/Contents/Helpers/EspansoUI.app`.
 - The GUI tray is non-macOS only; do not reintroduce a second macOS tray icon.
+- `scripts/create_bundle.sh` assembles a local macOS app bundle from binaries already on disk. It does not preserve the upstream Developer ID signature.
+- After reinstalling a locally assembled `/Applications/Espanso.app`, expect macOS Accessibility trust to need re-enabling under `System Settings > Privacy & Security > Accessibility`.
+- When debugging macOS setup or shortcut failures, verify the installed app identity with `codesign -dv --verbose=4 /Applications/Espanso.app`. A healthy local bundle should still report `Identifier=com.federicoterzi.espanso`; a generated linker-signed identifier can break Accessibility trust and launcher setup.
 - Tauri may generate schema files under:
   - `apps/espanso-studio-gui/src-tauri/gen/schemas`
 - If generated schema or manifest metadata changes during build, include those changes intentionally and document why.

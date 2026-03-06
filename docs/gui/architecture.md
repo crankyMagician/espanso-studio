@@ -10,6 +10,12 @@ The GUI is a Tauri 2 + React application at `apps/espanso-studio-gui`.
 - macOS helper app: embedded under the main `Espanso.app` bundle and launched from the espanso menu bar app
 - System tray: programmatic tray icon with menu and background status polling on non-macOS platforms
 
+## macOS Packaging Note
+
+The repository currently assembles the integrated macOS app with `scripts/create_bundle.sh`, which copies the locally built espanso binary and the Tauri helper into `target/mac/Espanso.app`. That workflow is suitable for local development, but it does not preserve the upstream release signature.
+
+This matters for device testing because macOS Accessibility trust is tied to app identity. Reinstalling a locally assembled `/Applications/Espanso.app` can leave espanso "running" while shortcuts no longer fire until `Espanso` is re-enabled under `System Settings > Privacy & Security > Accessibility`.
+
 ## Binary Resolution
 
 macOS `.app` bundles launch with a minimal PATH (`/usr/bin:/bin:/usr/sbin:/sbin`) that excludes Homebrew directories. All espanso CLI calls go through `util::run_espanso()`, which uses `OnceLock`-cached resolution:

@@ -19,6 +19,8 @@ npm run tauri -- dev
 - Helper GUI bundle: `target/release/bundle/macos/Espanso.app`
 - Integrated top-level app bundle: `target/mac/Espanso.app`
 - Assemble the integrated bundle from the repo root with `./scripts/create_bundle.sh`
+- The integrated bundle produced locally is a developer test bundle. It does not preserve the upstream release signature.
+- If you replace `/Applications/Espanso.app` with a locally assembled bundle, macOS may require you to re-enable `Espanso` in `System Settings > Privacy & Security > Accessibility` before text expansion works again.
 
 ## Backend behavior
 

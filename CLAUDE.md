@@ -105,6 +105,9 @@ Programmatic tray icon built with `TrayIconBuilder` (not the declarative `tauri.
 - The Tauri helper bundle is produced at `target/release/bundle/macos/Espanso.app`.
 - The integrated top-level macOS app is assembled by `scripts/create_bundle.sh` and embeds the helper at `Espanso.app/Contents/Helpers/EspansoUI.app`.
 - On macOS, the GUI closes normally instead of hiding to a tray icon.
+- `scripts/create_bundle.sh` assembles from local binaries and does not preserve the upstream Developer ID signature. Treat the result as a local test bundle, not a release-signed artifact.
+- Replacing `/Applications/Espanso.app` with a locally assembled bundle can invalidate the existing macOS Accessibility trust entry even when the config and matches are intact.
+- If setup gets stuck on the Accessibility step or shortcuts stop firing after reinstall, check the installed app identity with `codesign -dv --verbose=4 /Applications/Espanso.app`. If the identifier is not `com.federicoterzi.espanso`, fix the local bundle identity and re-enable Espanso in `System Settings > Privacy & Security > Accessibility`.
 
 ### GUI Frontend (React)
 
