@@ -14,7 +14,7 @@ static ICON_NORMAL: &[u8] = include_bytes!("../icons/icon.png");
 static ICON_DISABLED: &[u8] = include_bytes!("../icons/icondisabled.png");
 
 pub fn setup_tray(app: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
-    let open_item = MenuItemBuilder::with_id("open", "Open Espanso Studio").build(app)?;
+    let open_item = MenuItemBuilder::with_id("open", "Open Espanso").build(app)?;
     let separator1 = PredefinedMenuItem::separator(app)?;
     let enable_item = MenuItemBuilder::with_id("enable", "Enable").build(app)?;
     let disable_item = MenuItemBuilder::with_id("disable", "Disable").build(app)?;
@@ -40,7 +40,7 @@ pub fn setup_tray(app: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
         .icon(icon)
         .icon_as_template(true)
         .menu(&menu)
-        .tooltip("Espanso Studio")
+        .tooltip("Espanso")
         .on_menu_event(|app, event| {
             let id = event.id().as_ref();
             match id {

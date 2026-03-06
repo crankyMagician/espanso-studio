@@ -1,4 +1,4 @@
-# Espanso Studio GUI Architecture
+# Espanso GUI Architecture
 
 ## Overview
 
@@ -7,7 +7,8 @@ The GUI is a Tauri 2 + React application at `apps/espanso-studio-gui`.
 - Frontend: React + TypeScript (Vite bundler)
 - Backend: Rust Tauri commands organized in `src-tauri/src/commands/`
 - Integration: shelling out to `espanso` CLI for service operations
-- System tray: programmatic tray icon with menu and background status polling
+- macOS helper app: embedded under the main `Espanso.app` bundle and launched from the espanso menu bar app
+- System tray: programmatic tray icon with menu and background status polling on non-macOS platforms
 
 ## Binary Resolution
 
@@ -51,10 +52,11 @@ macOS `.app` bundles launch with a minimal PATH (`/usr/bin:/bin:/usr/sbin:/sbin`
 ## System Tray (`tray.rs`)
 
 Built programmatically with `TrayIconBuilder` (not declarative config). Features:
+- Non-macOS only
 - Context menu: Open, Enable/Disable, Search, Restart, Quit
 - Left-click shows/focuses the main window
 - Background thread polls service status every 5s, swaps icon between normal/disabled
-- Window close is intercepted to hide-to-tray instead of quitting
+- Non-macOS window close is intercepted to hide-to-tray instead of quitting
 
 ## Frontend Structure
 

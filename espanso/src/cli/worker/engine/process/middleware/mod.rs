@@ -23,4 +23,5 @@ pub mod match_select;
 pub mod matcher;
 pub mod multiplex;
 pub mod open_config;
+pub mod open_gui;
 pub mod render;

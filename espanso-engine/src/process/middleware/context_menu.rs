@@ -34,6 +34,7 @@ const CONTEXT_ITEM_SECURE_INPUT_TRIGGER_WORKAROUND: u32 = 5;
 const CONTEXT_ITEM_OPEN_SEARCH: u32 = 6;
 const CONTEXT_ITEM_SHOW_LOGS: u32 = 7;
 const CONTEXT_ITEM_OPEN_CONFIG_FOLDER: u32 = 8;
+const CONTEXT_ITEM_OPEN_GUI: u32 = 9;
 
 pub struct ContextMenuMiddleware {
     is_enabled: RefCell<bool>,
@@ -77,6 +78,10 @@ impl Middleware for ContextMenuMiddleware {
                     MenuItem::Simple(SimpleMenuItem {
                         id: CONTEXT_ITEM_OPEN_SEARCH,
                         label: "Open search bar".to_string(),
+                    }),
+                    MenuItem::Simple(SimpleMenuItem {
+                        id: CONTEXT_ITEM_OPEN_GUI,
+                        label: "Open Espanso".to_string(),
                     }),
                     MenuItem::Separator,
                     MenuItem::Simple(SimpleMenuItem {
@@ -164,6 +169,10 @@ impl Middleware for ContextMenuMiddleware {
                         dispatch(Event::caused_by(event.source_id, EventType::ShowSearchBar));
                         Event::caused_by(event.source_id, EventType::NOOP)
                     }
+                    CONTEXT_ITEM_OPEN_GUI => {
+                        dispatch(Event::caused_by(event.source_id, EventType::OpenGui));
+                        Event::caused_by(event.source_id, EventType::NOOP)
+                    }
                     CONTEXT_ITEM_SHOW_LOGS => {
                         dispatch(Event::caused_by(event.source_id, EventType::ShowLogs));
                         Event::caused_by(event.source_id, EventType::NOOP)
@@ -175,7 +184,7 @@ impl Middleware for ContextMenuMiddleware {
                         ));
                         Event::caused_by(event.source_id, EventType::NOOP)
                     }
-                    9_u32..=u32::MAX => {
+                    10_u32..=u32::MAX => {
                         // Should be unreachable, given there are no other options
                         unreachable!()
                     }
@@ -199,5 +208,51 @@ impl Middleware for ContextMenuMiddleware {
             }
             _ => event,
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{ContextMenuMiddleware, CONTEXT_ITEM_OPEN_GUI};
+    use crate::event::{input::ContextMenuClickedEvent, ui::MenuItem, Event, EventType};
+    use crate::process::Middleware;
+
+    #[test]
+    fn tray_menu_contains_open_espanso_item() {
+        let middleware = ContextMenuMiddleware::new();
+        let event = Event {
+            source_id: 1,
+            etype: EventType::TrayIconClicked,
+        };
+
+        let event = middleware.next(event, &mut |_| {});
+
+        let EventType::ShowContextMenu(payload) = event.etype else {
+            panic!("expected ShowContextMenu event");
+        };
+
+        assert!(payload.items.iter().any(|item| matches!(
+            item,
+            &MenuItem::Simple(ref simple_item)
+                if simple_item.id == CONTEXT_ITEM_OPEN_GUI && simple_item.label == "Open Espanso"
+        )));
+    }
+
+    #[test]
+    fn open_gui_menu_item_dispatches_open_gui_event() {
+        let middleware = ContextMenuMiddleware::new();
+        let mut dispatched = Vec::new();
+        let event = Event {
+            source_id: 7,
+            etype: EventType::ContextMenuClicked(ContextMenuClickedEvent {
+                context_item_id: CONTEXT_ITEM_OPEN_GUI,
+            }),
+        };
+
+        let event = middleware.next(event, &mut |event| dispatched.push(event));
+
+        assert!(matches!(event.etype, EventType::NOOP));
+        assert_eq!(dispatched.len(), 1);
+        assert!(matches!(&dispatched[0].etype, EventType::OpenGui));
     }
 }

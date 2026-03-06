@@ -47,6 +47,7 @@ pub use middleware::matcher::{
 pub use middleware::multiplex::Multiplexer;
 pub use middleware::notification::NotificationManager;
 pub use middleware::open_config::ConfigPathProvider;
+pub use middleware::open_gui::GuiAppPathProvider;
 pub use middleware::render::{Renderer, RendererError};
 pub use middleware::search::MatchProvider;
 pub use middleware::stats::{set_global_recorder, StatsRecord, StatsRecorder};
@@ -65,6 +66,7 @@ pub fn default<'a, MatcherState>(
     event_sequence_provider: &'a dyn EventSequenceProvider,
     path_provider: &'a dyn PathProvider,
     config_path_provider: &'a dyn ConfigPathProvider,
+    gui_app_path_provider: &'a dyn GuiAppPathProvider,
     disable_options: DisableOptions,
     matcher_options_provider: &'a dyn MatcherMiddlewareConfigProvider,
     match_provider: &'a dyn MatchProvider,
@@ -86,6 +88,7 @@ pub fn default<'a, MatcherState>(
         event_sequence_provider,
         path_provider,
         config_path_provider,
+        gui_app_path_provider,
         disable_options,
         matcher_options_provider,
         match_provider,

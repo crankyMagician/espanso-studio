@@ -1,14 +1,17 @@
 # ![Espanso Logo](images/espanso-dark.png#gh-dark-mode-only) ![Espanso Logo](images/espanso-light.png#gh-light-mode-only)
 
-## Espanso Studio Fork Notes
+## Fork Notes
 
 This repository (`crankyMagician/espanso-studio`) is a fork of `espanso/espanso` with a GUI product under [`apps/espanso-studio-gui`](apps/espanso-studio-gui/README.md).
+
+The user-facing GUI is branded as `Espanso`. On macOS, the menu bar `espanso` app can launch the bundled GUI helper from the same top-level `.app` bundle.
 
 Milestone 1 GUI features:
 
 * Match CRUD (`match/base.yml`)
 * Service controls (start/stop/restart/status)
 * Log tailing (`espanso.log`)
+* macOS helper GUI launched from the main `espanso` menu bar app
 
 Additional docs:
 

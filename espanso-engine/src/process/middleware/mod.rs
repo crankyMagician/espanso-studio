@@ -36,6 +36,7 @@ pub mod matcher;
 pub mod multiplex;
 pub mod notification;
 pub mod open_config;
+pub mod open_gui;
 pub mod render;
 pub mod search;
 pub mod stats;

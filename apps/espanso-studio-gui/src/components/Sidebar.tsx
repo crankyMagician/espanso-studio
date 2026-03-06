@@ -70,7 +70,7 @@ export default function Sidebar({
         <aside className="sidebar">
             <div className="sidebar-logo">
                 <img src={logo} alt="Espanso" />
-                <span>Espanso Studio</span>
+                <span>Espanso</span>
             </div>
             <nav className="sidebar-nav">
                 {NAV_ITEMS.map((item) => (

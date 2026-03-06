@@ -1,4 +1,4 @@
-# Espanso Studio GUI Quickstart
+# Espanso GUI Quickstart
 
 ## Prerequisites
 
@@ -21,9 +21,15 @@ cd apps/espanso-studio-gui
 npm run tauri -- build --bundles app
 ```
 
-The `.app` bundle is output to `target/release/bundle/macos/Espanso Studio.app`.
+The GUI helper `.app` bundle is output to `target/release/bundle/macos/Espanso.app`.
 
-To install: copy to `/Applications/`.
+To embed the GUI helper inside the main macOS app bundle:
+
+```bash
+scripts/create_bundle.sh
+```
+
+This produces the integrated `target/mac/Espanso.app` bundle. To install: copy that app to `/Applications/`.
 
 ## Optional Environment Overrides
 
@@ -46,4 +52,5 @@ When running as a `.app` bundle, the app automatically finds the espanso binary 
 - **Statistics**: usage stats with time period filtering and bar charts
 - **Logs**: tail daemon logs with level filtering and search
 - **Settings**: config file editor, environment PATH management, Secure Input workaround
-- **System tray**: hide-to-tray on close, status icon polling, quick-access menu
+- **macOS integration**: bundled helper app launched from the Espanso menu bar app
+- **System tray**: non-macOS quick-access menu and status icon polling

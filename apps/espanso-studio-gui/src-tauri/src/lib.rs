@@ -1,4 +1,5 @@
 mod commands;
+#[cfg(not(target_os = "macos"))]
 mod tray;
 mod util;
 
@@ -20,16 +21,26 @@ use commands::stats::{clear_stats, get_stats, prune_stats};
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .setup(|app| {
-            if let Err(err) = tray::setup_tray(app.handle()) {
+        .setup(|_app| {
+            #[cfg(not(target_os = "macos"))]
+            if let Err(err) = tray::setup_tray(_app.handle()) {
                 eprintln!("tray setup failed: {err}");
             }
             Ok(())
         })
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::CloseRequested { api, .. } = event {
-                let _ = window.hide();
-                api.prevent_close();
+                #[cfg(not(target_os = "macos"))]
+                {
+                    let _ = window.hide();
+                    api.prevent_close();
+                }
+
+                #[cfg(target_os = "macos")]
+                {
+                    let _ = window;
+                    let _ = api;
+                }
             }
         })
         .invoke_handler(tauri::generate_handler![
